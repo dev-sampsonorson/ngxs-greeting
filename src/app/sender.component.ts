@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngxs/store';
+
+import { SendGreeting } from './state/greeting.action';
 
 @Component({
     selector: 'an-sender',
@@ -15,10 +18,12 @@ export class SenderComponent {
 
     message = "";
 
-    constructor() { }
+    constructor(
+        private _store: Store
+    ) { }
 
     onSendGreeting(): void {
-        // TODO: 3. Dispatch action
+        this._store.dispatch(new SendGreeting(this.message));
     }
 
 }
